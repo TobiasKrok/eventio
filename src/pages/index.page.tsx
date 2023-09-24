@@ -6,11 +6,9 @@ import UserInfo from "@/core/components/UserInfo";
 const Home: BlitzPage = () => {
   return (
     <Layout title="Home">
-      <div>
-        <Suspense fallback="Loading...">
-          <UserInfo />
-        </Suspense>
-      </div>
+      <Suspense fallback="Loading...">
+        <UserInfo />
+      </Suspense>
     </Layout>
   );
 };

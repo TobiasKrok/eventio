@@ -1,0 +1,16 @@
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.debug {
+  border: 1px solid red;
+}

@@ -1,5 +1,5 @@
 import Document, { Html, Main, NextScript, Head } from "next/document";
-
+import { ColorSchemeScript } from "@mantine/core";
 class MyDocument extends Document {
   // Only uncomment if you need to customize this behaviour
   // static async getInitialProps(ctx: DocumentContext) {
@@ -10,6 +10,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
+        <ColorSchemeScript defaultColorScheme="auto" />
         <body>
           <Main />
           <NextScript />
