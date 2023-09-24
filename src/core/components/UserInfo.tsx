@@ -1,8 +1,8 @@
+import logout from "@/features/auth/mutations/logout";
+import { useCurrentUser } from "@/features/users/hooks/useCurrentUser";
 import { Routes } from "@blitzjs/next";
 import { useMutation } from "@blitzjs/rpc";
 import Link from "next/link";
-import logout from "src/auth/mutations/logout";
-import { useCurrentUser } from "src/users/hooks/useCurrentUser";
 
 const UserInfo = () => {
   const currentUser = useCurrentUser();
