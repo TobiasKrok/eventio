@@ -5,8 +5,8 @@ import { Form, FORM_ERROR } from "src/core/components/Form";
 
 import { useMutation } from "@blitzjs/rpc";
 import { Routes } from "@blitzjs/next";
-import login from "../mutations/login";
-import { Login } from "../schemas";
+import login from "../../../../features/auth/mutations/login";
+import { Login } from "../../../../features/auth/schemas";
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void;
