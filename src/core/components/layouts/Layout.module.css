@@ -3,6 +3,14 @@
   align-items: center;
 }
 
+.alignCenter {
+  align-items: center;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
 .fullWidth {
   width: 100%;
 }
