@@ -25,9 +25,9 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
           footer={{ height: 30 }}
           padding="md"
         >
-          <AppShell.Header>
-            <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-            <Horizontal fullHeight justifyCenter>
+          <AppShell.Header pl={"md"}>
+            <Horizontal fullHeight debug>
+              <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
               <Text fw={"bold"}> {title || "eventio"}</Text>
             </Horizontal>
           </AppShell.Header>
@@ -35,9 +35,7 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
           {/*   <AppShell.Navbar p="md">Navbar</AppShell.Navbar> */}
 
           <AppShell.Main>
-            <Vertical fullWidth fullHeight>
-              {children}
-            </Vertical>
+            <Vertical fullHeight>{children}</Vertical>
           </AppShell.Main>
           <AppShell.Footer>
             <Horizontal fullHeight fullWidth center>

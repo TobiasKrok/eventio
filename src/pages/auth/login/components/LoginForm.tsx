@@ -7,6 +7,8 @@ import { useMutation } from "@blitzjs/rpc";
 import { Routes } from "@blitzjs/next";
 import login from "../../../../features/auth/mutations/login";
 import { Login } from "../../../../features/auth/schemas";
+import { useForm } from "@mantine/form";
+import { Button, PasswordInput, TextInput } from "@mantine/core";
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void;
@@ -14,37 +16,33 @@ type LoginFormProps = {
 
 export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login);
+
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  });
   return (
     <div>
       <h1>Login</h1>
-
-      <Form
-        submitText="Login"
-        schema={Login}
-        initialValues={{ email: "", password: "" }}
-        onSubmit={async (values) => {
-          try {
-            const user = await loginMutation(values);
-            props.onSuccess?.(user);
-          } catch (error: any) {
-            if (error instanceof AuthenticationError) {
-              return { [FORM_ERROR]: "Sorry, those credentials are invalid" };
-            } else {
-              return {
-                [FORM_ERROR]:
-                  "Sorry, we had an unexpected error. Please try again. - " + error.toString(),
-              };
-            }
-          }
-        }}
-      >
-        <LabeledTextField name="email" label="Email" placeholder="Email" />
-        <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
-        <div>
-          <Link href={Routes.ForgotPasswordPage()}>Forgot your password?</Link>
-        </div>
-      </Form>
-
+      <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <TextInput
+          withAsterisk
+          label="Email"
+          placeholder="your@email.com"
+          {...form.getInputProps("email")}
+        />
+        <PasswordInput withAsterisk label="Password" {...form.getInputProps("password")} />
+      </form>
+      <div>
+        <Link href={Routes.ForgotPasswordPage()}>Forgot your password?</Link>
+        <Button type="submit">Submit</Button>
+      </div>
       <div style={{ marginTop: "1rem" }}>
         Or <Link href={Routes.SignupPage()}>Sign Up</Link>
       </div>
